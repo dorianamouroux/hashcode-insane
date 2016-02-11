@@ -15,7 +15,7 @@ class Parser():
         self.numberOfWH = 0
         self.warehouses = dict()
         self.numberOfOrders = 0
-        self.oders = dict()
+        self.orders = dict()
 
         if os.path.isfile(filename):
             with open(filename, 'r') as f:
@@ -43,21 +43,28 @@ class Parser():
         self.numberOfWH = int(self.content[3])
 
         # configuration of each warehouses
-        for i in range(0, self.numberOfWH):
+        idx = 0
+        for i in range(0, self.numberOfWH * 2, 2):
             newWH = list()
             newWH.append(self.content[4 + i].split(' '))
             newWH.append(self.content[4 + i + 1].split(' '))
-            self.warehouses[i] = newWH
+            self.warehouses[idx] = newWH
+            idx += 1
 
+        orderLine = 4 + self.numberOfWH * 2
         # number of orders
-        self.numberOfOrders = int(self.content[5])
+        self.numberOfOrders = int(self.content[orderLine])
 
+        orderLine += 1
         # configuration of each orders
-        for i in range(0, self.numberOfOrders):
+        idx = 0
+        for i in range(0, self.numberOfOrders * 3, 3):
             newOrder = list()
-            newOrder.append(self.content[6 + i].split(' '))
-            newOrder.append(int(self.content[6 + i + 1]))
-            newOrder.append(self.content[6 + i + 2].split(' '))
+            newOrder.append(self.content[orderLine + i].split(' '))
+            newOrder.append(int(self.content[orderLine + i + 1]))
+            newOrder.append(self.content[orderLine + i + 2].split(' '))
+            self.orders[idx] = newOrder
+            idx += 1
 
     def display(self):
         print(self.rows, self.columns, self.drones, self.deadline, self.maxDroneLoad)
