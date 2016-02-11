@@ -16,16 +16,19 @@ def main():
         core.addProductType(weight)
 
     # create warehouses with products
-    warehouses = getWarehouses()
+    warehouses = parser.getWarehouses()
     for id, warehouse in warehouses.items():
         wareHouseId = core.addWareHouse(warehouse[0][0], warehouse[0][1])
         i = 0
         for product in warehouse[1]:
             core.addProductWareHouse(warehouse, i, product)
 
-#    newOrder = core.addOrder(4, 5)
-
-#    core.addItemOrder(newOrder, 2, 5)
+    orders = parser.getOrders()
+    for order in orders:
+        orderId = core.addOrder(order[0][0], order[0][1])
+        i = 0
+        for product in order[2]:
+            core.addItemOrder(orderId, product, 1)
 
 if __name__ == "__main__":
     main()

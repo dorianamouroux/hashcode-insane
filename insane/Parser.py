@@ -14,6 +14,8 @@ class Parser():
         self.weights = list()
         self.numberOfWH = 0
         self.warehouses = dict()
+        self.numberOfOrders = 0
+        self.oders = dict()
 
         if os.path.isfile(filename):
             with open(filename, 'r') as f:
@@ -44,8 +46,18 @@ class Parser():
         for i in range(0, self.numberOfWH):
             newWH = list()
             newWH.append(self.content[4 + i].split(' '))
-            newWH.append(list(self.content[4 + i + 1].split(' ')))
+            newWH.append(self.content[4 + i + 1].split(' '))
             self.warehouses[i] = newWH
+
+        # number of orders
+        self.numberOfOrders = int(self.content[5])
+
+        # configuration of each orders
+        for i in range(0, self.numberOfOrders):
+            newOrder = list()
+            newOrder.append(self.content[6 + i].split(' '))
+            newOrder.append(int(self.content[6 + i + 1]))
+            newOrder.append(self.content[6 + i + 2].split(' '))
 
     def display(self):
         print(self.rows, self.columns, self.drones, self.deadline, self.maxDroneLoad)
@@ -81,3 +93,6 @@ class Parser():
 
     def getWarehouses(self):
         return self.warehouses
+
+    def getOrders(self):
+        return self.orders
