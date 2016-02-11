@@ -13,12 +13,12 @@ def main():
     # create the products type
     weights = parser.getWeights()
     for weight in weights:
-        core.addProductType(weight)
+        core.addProductType(int(weight))
 
     # create warehouses with products
     warehouses = parser.getWarehouses()
     for id, warehouse in warehouses.items():
-        wareHouseId = core.addWareHouse(warehouse[0][0], warehouse[0][1])
+        wareHouseId = core.addWareHouse(int(warehouse[0][0]), int(warehouse[0][1]))
         i = 0
         for product in warehouse[1]:
             core.addProductWareHouse(wareHouseId, i, product)
@@ -28,7 +28,9 @@ def main():
     for id, order in orders.items():
         orderId = core.addOrder(order[0][0], order[0][1])
         for product in order[2]:
-            core.addItemOrder(orderId, product, 1)
+            core.addItemOrder(orderId, int(product), 1)
+
+    core.printAll()
 
 if __name__ == "__main__":
     main()
