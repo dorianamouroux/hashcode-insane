@@ -15,15 +15,8 @@ class Core:
         self.WHList = []
         self.productType = []
         self.orders = []
-        
-    def addWareHouse(self, posX, posY):
-        newWH = WareHouse(posX, posY, len(self.WHList), len(self.productType))
-        self.WHList.append(newWH)
-        return newWH.getId()
-
-    def getWareHouse(self, pos):
-        return self.WHList[pos]
-    
+                
+    # product type function
     def addProductType(self, weight):
         newProduct = Product(len(self.productType), weight)
         self.productType.append(newProduct)
@@ -32,10 +25,19 @@ class Core:
     def getProductType(self, pos):
         return self.productType[pos]
 
+    # warehouse functions
+    def addWareHouse(self, posX, posY):
+        newWH = WareHouse(posX, posY, len(self.WHList), len(self.productType))
+        self.WHList.append(newWH)
+        return newWH.getId()
+
+    def getWareHouse(self, pos):
+        return self.WHList[pos]
+   
     def addProductWareHouse(self, idWareHouse, idProduct, quantity):
         self.getWareHouse(idWareHouse).addProduct(idProduct, quantity)
 
-        
+    # order function
     def addOrder(self, posX, posY):
         newOrder = Order(posX, posY, len(self.orders), len(self.productType))
         self.orders.append(newOrder)
