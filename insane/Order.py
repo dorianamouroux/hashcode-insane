@@ -16,5 +16,11 @@ class Order:
     def getId(self):
         return self.id
     
-    def getWeight():
+    def getWeight(self):
         return self.weight
+    
+    def getX(self):
+        return (self.x)
+    
+    def getY(self)
+        return (self.y)

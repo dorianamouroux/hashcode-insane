@@ -18,5 +18,10 @@ def main():
     core.getWareHouse(0).toString()
 
     core.addProductType(500)
+    
+    newOrder = core.addOrder(4, 5)
+    
+    core.addItemOrder(newOrder, 2, 5)
+    
 if __name__ == "__main__":
     main()
