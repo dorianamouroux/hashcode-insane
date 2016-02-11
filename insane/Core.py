@@ -44,9 +44,9 @@ class Core:
     # warehouse functions
     def addWareHouse(self, posX, posY):
         newWH = WareHouse(posX, posY, len(self.WHList), len(self.productType))
+        self.WHList.append(newWH)
         if newWH.getId() == 0:
             self.setPositionDrone()
-        self.WHList.append(newWH)
         return newWH.getId()
 
     def getWareHouse(self, pos):
