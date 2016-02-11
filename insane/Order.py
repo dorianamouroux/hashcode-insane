@@ -22,5 +22,8 @@ class Order:
     def getX(self):
         return (self.x)
     
-    def getY(self)
+    def getY(self):
         return (self.y)
+    
+    def toString(self):
+        print("I am an Order (id=%d) and my list is " % self.id, self.items, "\nmy total weight is %d" % self.weight)

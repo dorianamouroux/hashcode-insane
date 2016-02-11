@@ -11,3 +11,6 @@ class Product:
     
     def getWeight(self):
         return self.weight
+    
+    def toString(self):
+        print("I am a product (id = %d) and my weight is %d" % (self.id, self.weight))

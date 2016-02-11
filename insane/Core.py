@@ -21,7 +21,7 @@ class Core:
         newProduct = Product(len(self.productType), weight)
         self.productType.append(newProduct)
         return newProduct.getId()
-    
+
     def getProductType(self, pos):
         return self.productType[pos]
 
@@ -49,3 +49,30 @@ class Core:
     def addItemOrder(self, idOrder, idItem, quantity):
         product = self.getProductType(idItem)
         self.getOrder(idOrder).addItem(product, quantity)
+        
+    # some logging function
+    
+    def printAll(self):
+        self.printAllType()
+        self.printAllWareHouse()
+        self.printAllOrder()
+    
+    def printer(self, word, toRead):
+        i = 0
+        print("Print all ", word, " : \n")
+        for item in toRead:
+            if i == 1:
+                print("-----")
+            item.toString()
+            i = 1
+        print("\n")
+        
+    
+    def printAllWareHouse(self):
+        self.printer("WareHouse", self.WHList)
+
+    def printAllType(self):
+        self.printer("Product Type", self.productType)
+    
+    def printAllOrder(self):
+        self.printer("Order", self.orders)
