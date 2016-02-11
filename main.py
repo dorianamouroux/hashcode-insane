@@ -1,15 +1,10 @@
 #!/usr/bin/python3
 
-import insane.Core
-# or
-from insane.Core import func
-
-insane.Core.func()
-# or
-func()
+from insane.Parser import Parser
 
 def main():
-    # write your main here
+    parser = Parser("sample/busy_day.in")
+    parser.display()
 
 if __name__ == "__main__":
     main()
