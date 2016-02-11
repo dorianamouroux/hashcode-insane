@@ -65,7 +65,7 @@ class Core:
         return self.orders[pos]
     
     def addItemOrder(self, idOrder, idItem, quantity):
-        product = self.getProductType(idItem)
+        product = self.getProductType(int(idItem))
         self.getOrder(idOrder).addItem(product, quantity)
         
     # some logging function
