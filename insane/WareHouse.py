@@ -2,11 +2,11 @@
 
 class WareHouse:
     
-    def __init__(self, posX, posY, id):
+    def __init__(self, posX, posY, id, nbProduct):
         self.x = posX
         self.y = posY
         self.id = id
-        self.products = []
+        self.products = [0] * nbProduct
     
     def addProduct(self, product):
         self.products.append(product)
@@ -17,11 +17,12 @@ class WareHouse:
                 return true
         return false
     
-    def addProduct(self, product)
-        self.products.append(product)
+    def addProduct(self, idProduct, quantity):
+        self.products[idProduct] = quantity
     
     def toString(self):
         print("I am a warehouse (id = %d) in position <%d,%d>" % (self.id, self.x, self.y))
+        print("This is my inventory : ", self.products)
        
     
     # some getter/setter

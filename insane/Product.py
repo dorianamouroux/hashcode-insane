@@ -6,8 +6,8 @@ class Product:
         self.id = id
         self.weight = weight
         
-    def getId():
+    def getId(self):
         return self.id
     
-    def getWeight():
+    def getWeight(self):
         return self.weight
