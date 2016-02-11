@@ -5,7 +5,7 @@ from insane.Product import Product
 from insane.Order import Order
 
 class Core:
-    
+
     def __init__(self, x, y, nbDrone, nbTurn, maxPayload):
         self.x = x
         self.y = y
@@ -33,7 +33,7 @@ class Core:
 
     def getWareHouse(self, pos):
         return self.WHList[pos]
-   
+
     def addProductWareHouse(self, idWareHouse, idProduct, quantity):
         self.getWareHouse(idWareHouse).addProduct(idProduct, quantity)
 

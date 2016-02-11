@@ -1,27 +1,31 @@
 #!/usr/bin/python3
 
+from insane.Parser import Parser
 from insane.Core import Core
 
 def main():
-    core = Core(100, 100, 5, 50, 500)
-    
-    core.addProductType(400)
-    core.addProductType(200)
-    core.addProductType(300)
-    
-    wareHouseId = core.addWareHouse(20, 4)
-    
-    core.addProductWareHouse(wareHouseId, 0, 5)
-    core.addProductWareHouse(wareHouseId, 1, 1)
-    core.addProductWareHouse(wareHouseId, 2, 0)
+    parser = Parser("sample/busy_day.in")
+    parser.display()
 
-    core.getWareHouse(0).toString()
+    # create the environment
+    core = Core(parser.getRows(), parser.getColumns(), parser.getDrones(), parser.getDeadline(), parser.getMaxDroneLoad())
 
-    core.addProductType(500)
-    
-    newOrder = core.addOrder(4, 5)
-    
-    core.addItemOrder(newOrder, 2, 5)
-    
+    # create the products type
+    weights = parser.getWeights()
+    for weight in weights:
+        core.addProductType(weight)
+
+    # create warehouses with products
+    warehouses = getWarehouses()
+    for id, warehouse in warehouses.items():
+        wareHouseId = core.addWareHouse(warehouse[0][0], warehouse[0][1])
+        i = 0
+        for product in warehouse[1]:
+            core.addProductWareHouse(warehouse, i, product)
+
+#    newOrder = core.addOrder(4, 5)
+
+#    core.addItemOrder(newOrder, 2, 5)
+
 if __name__ == "__main__":
     main()
