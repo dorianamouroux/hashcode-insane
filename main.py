@@ -23,5 +23,9 @@ def main():
         for product in warehouse[1]:
             core.addProductWareHouse(warehouse, i, product)
 
+#    newOrder = core.addOrder(4, 5)
+
+#    core.addItemOrder(newOrder, 2, 5)
+
 if __name__ == "__main__":
     main()
