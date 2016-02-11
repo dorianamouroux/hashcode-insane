@@ -3,6 +3,7 @@
 from insane.WareHouse import WareHouse
 from insane.Product import Product
 from insane.Order import Order
+from insane.Drone import Drone
 
 class Core:
 
@@ -13,9 +14,24 @@ class Core:
         self.nbTurn = nbTurn
         self.maxPayload = maxPayload
         self.WHList = []
+        self.drone = []
         self.productType = []
         self.orders = []
-                
+        self.createDrone(nbDrone)
+    
+    # drone function
+    def createDrone(self, nb):
+        i = 0
+        for i in range(0, nb):
+            newDrone = Drone(len(self.drone))
+            self.drone.append(newDrone)
+    
+    def setPositionDrone(self):
+        warehouse = self.getWareHouse(0)
+        for drone in self.drone:
+            drone.setX(warehouse.getX())
+            drone.setY(warehouse.getY())
+
     # product type function
     def addProductType(self, weight):
         newProduct = Product(len(self.productType), weight)
@@ -28,6 +44,8 @@ class Core:
     # warehouse functions
     def addWareHouse(self, posX, posY):
         newWH = WareHouse(posX, posY, len(self.WHList), len(self.productType))
+        if newWH.getId() == 0:
+            self.setPositionDrone()
         self.WHList.append(newWH)
         return newWH.getId()
 
@@ -56,6 +74,7 @@ class Core:
         self.printAllType()
         self.printAllWareHouse()
         self.printAllOrder()
+        self.printAllDrone()
     
     def printer(self, word, toRead):
         i = 0
@@ -67,7 +86,6 @@ class Core:
             i = 1
         print("\n")
         
-    
     def printAllWareHouse(self):
         self.printer("WareHouse", self.WHList)
 
@@ -76,3 +94,6 @@ class Core:
     
     def printAllOrder(self):
         self.printer("Order", self.orders)
+        
+    def printAllDrone(self):
+        self.printer("Drone", self.drone)
